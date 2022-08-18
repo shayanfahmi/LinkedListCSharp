@@ -57,6 +57,19 @@ namespace LinkedListCSharp
             //Console.WriteLine(FindElementInLinkedListRecursively(a, 'P'));
 
             //Find Node Value in linked list
+            //var a = new Node<char>('A');
+            //var b = new Node<char>('B');
+            //var c = new Node<char>('C');
+            //var d = new Node<char>('D');
+            //var e = new Node<char>('E');
+            //a.next = b;
+            //b.next = c;
+            //c.next = d;
+            //d.next = e;
+            ////Console.WriteLine(FindNodeValueInLinkedList(a, 0));
+            //Console.WriteLine(FindNodeValueInLinkedListRecursively(a, 10));
+
+            //Reverse Linked List
             var a = new Node<char>('A');
             var b = new Node<char>('B');
             var c = new Node<char>('C');
@@ -66,8 +79,36 @@ namespace LinkedListCSharp
             b.next = c;
             c.next = d;
             d.next = e;
-            //Console.WriteLine(FindNodeValueInLinkedList(a, 0));
-            Console.WriteLine(FindNodeValueInLinkedListRecursively(a, 10));
+            //Node<char> head = ReverseLinkedList(a);
+            Node<char> head = ReverseLinkedListRecursively(null, a);
+            printLinkedList(head);
+        }
+
+        private static Node<char> ReverseLinkedListRecursively(Node<char> prev, Node<char> curr)
+        {
+            if (curr == null) return prev;
+            Node<char> next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+            return ReverseLinkedListRecursively(prev, curr);
+        }
+
+        private static Node<char> ReverseLinkedList(Node<char> head)
+        {
+            if (head == null) return null;
+            Node<char> prev = null;
+            Node<char> curr = head;
+            Node<char> next = null;
+
+            while (curr != null) {
+                next = curr.next;
+                curr.next = prev;
+                prev = curr;
+                curr = next;
+            }
+
+            return prev;
         }
 
         private static char FindNodeValueInLinkedListRecursively(Node<char> head, int index)
