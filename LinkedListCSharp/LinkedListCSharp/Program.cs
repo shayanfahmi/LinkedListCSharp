@@ -44,6 +44,19 @@ namespace LinkedListCSharp
             //Console.WriteLine(SumLinkedListRecursively(a));
 
             //Find element in linked list
+            //var a = new Node<char>('A');
+            //var b = new Node<char>('B');
+            //var c = new Node<char>('C');
+            //var d = new Node<char>('D');
+            //var e = new Node<char>('E');
+            //a.next = b;
+            //b.next = c;
+            //c.next = d;
+            //d.next = e;
+            ////Console.WriteLine(FindElementInLinkedList(a, 'A'));
+            //Console.WriteLine(FindElementInLinkedListRecursively(a, 'P'));
+
+            //Find Node Value in linked list
             var a = new Node<char>('A');
             var b = new Node<char>('B');
             var c = new Node<char>('C');
@@ -53,8 +66,32 @@ namespace LinkedListCSharp
             b.next = c;
             c.next = d;
             d.next = e;
-            //Console.WriteLine(FindElementInLinkedList(a, 'A'));
-            Console.WriteLine(FindElementInLinkedListRecursively(a, 'P'));
+            //Console.WriteLine(FindNodeValueInLinkedList(a, 0));
+            Console.WriteLine(FindNodeValueInLinkedListRecursively(a, 10));
+        }
+
+        private static char FindNodeValueInLinkedListRecursively(Node<char> head, int index)
+        {
+            if (head == null) return ' ';
+            if (index == 0)
+            {
+                return head.val;
+            }
+            return FindNodeValueInLinkedListRecursively(head.next, --index);
+        }
+
+        private static char FindNodeValueInLinkedList(Node<char> head, int index)
+        {
+            var curr = head;
+            int indexCount = 0;
+            while (curr != null) {
+                if (indexCount == index) {
+                    return curr.val;
+                }
+                curr = curr.next;
+                indexCount++;
+            }
+            return ' ';
         }
 
         private static bool FindElementInLinkedListRecursively(Node<char> head, char check)
